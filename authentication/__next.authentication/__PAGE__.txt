@@ -1,0 +1,162 @@
+1:"$Sreact.fragment"
+2:I[42835,["/_next/static/chunks/7408279f585ae723.js","/_next/static/chunks/f27acd8022899d7e.js"],"DocLayout"]
+3:I[42516,["/_next/static/chunks/7408279f585ae723.js","/_next/static/chunks/f27acd8022899d7e.js"],"TypeDefinition"]
+12:I[72063,["/_next/static/chunks/7408279f585ae723.js","/_next/static/chunks/f27acd8022899d7e.js"],"CodeBlock"]
+16:I[22995,["/_next/static/chunks/7408279f585ae723.js","/_next/static/chunks/f27acd8022899d7e.js"],"PageNavigation"]
+17:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+18:"$Sreact.suspense"
+0:{"buildId":"4wSIn0LPrOuQTL_f-oJ9L","rsc":["$","$1","c",{"children":[["$","$L2",null,{"children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-3xl font-bold tracking-tight sm:text-4xl","children":"Authentication"}],["$","p",null,{"className":"mt-4 text-lg text-muted-foreground","children":"AI agents need a way to authenticate with applications that goes beyond human-focused interfaces like username/password forms or social logins. SID provides an optional token-based authentication mechanism that allows agents to authenticate programmatically while inheriting the permissions of the user who created the token."}]]}],["$","div",null,{"className":"space-y-12","children":[["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Why Token-Based Authentication for Agents"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Traditional authentication methods present challenges for AI agents:"}],["$","div",null,{"className":"overflow-x-auto mb-6","children":["$","table",null,{"className":"w-full border-collapse border border-border","children":[["$","thead",null,{"children":["$","tr",null,{"className":"bg-muted","children":[["$","th",null,{"className":"border border-border px-4 py-2 text-left font-semibold","children":"Method"}],["$","th",null,{"className":"border border-border px-4 py-2 text-left font-semibold","children":"Challenge for Agents"}]]}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"className":"border border-border px-4 py-2","children":"Username/Password"}],["$","td",null,{"className":"border border-border px-4 py-2","children":"Requires users to share credentials with the agent—a significant security risk. Forms may have CAPTCHAs or other bot-detection measures."}]]}],["$","tr",null,{"children":[["$","td",null,{"className":"border border-border px-4 py-2","children":"OAuth/Social Login"}],["$","td",null,{"className":"border border-border px-4 py-2","children":"Redirects to external providers, requires human interaction for consent screens, and may involve complex multi-step flows."}]]}]]}]]}]}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Token-based authentication solves these problems:"}],["$","ul",null,{"className":"list-disc list-inside space-y-2 text-base leading-7 ml-4","children":[["$","li",null,{"children":[["$","strong",null,{"children":"No credential sharing:"}]," Users generate API tokens from their account settings—the agent never sees the user's password"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Programmatic access:"}]," Tokens can be passed directly to the SID API without navigating login forms"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Scoped permissions:"}]," Tokens inherit the user's permissions, and can potentially be scoped to specific actions"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Revocable:"}]," Users can revoke tokens at any time without changing their password"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Auditable:"}]," Applications can track which actions were performed via which token"]}]]}]]}],["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"The Auth API"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":["The ",["$","code",null,{"className":"bg-muted px-1 rounded","children":"window.SID.auth"}]," ","object is ",["$","strong",null,{"children":"optional"}],". Applications that don't require authentication simply don't expose it. When present, it provides two members:"]}],["$","$L3",null,{"name":"SIDAuth","description":"The optional authentication interface exposed on window.SID. Provides a method for token-based authentication and a plaintext description of how auth works.","code":"interface SIDAuth {\n  // Plaintext description of how authentication works\n  description: string;\n  \n  // Authenticate with a token\n  authenticate(token: string): Promise<boolean>;\n}"}],"$L4","$L5"]}],"$L6","$L7","$L8","$L9","$La","$Lb","$Lc","$Ld"]}],"$Le"]}],["$Lf","$L10"],"$L11"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"border rounded-lg p-4 mb-6 mt-6","children":[["$","h3",null,{"className":"font-mono font-semibold mb-2 mt-0","children":"auth.description"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":"A plaintext description explaining how authentication works for this application. This helps agents understand what tokens are needed, what permissions they grant, and any special considerations."}],["$","$L12",null,{"language":"javascript","code":"console.log(SID.auth.description);\n// \"Supports token-based auth for agents. Call SID.auth.authenticate(token) \n//  with a SID token. Tokens have the same permissions as the user who \n//  created them.\""}]]}]
+5:["$","div",null,{"className":"border rounded-lg p-4 mb-6","children":[["$","h3",null,{"className":"font-mono font-semibold mb-2 mt-0","children":"auth.authenticate(token: string): Promise<boolean>"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":["Authenticates the agent with the provided SID token. Returns"," ",["$","code",null,{"className":"bg-muted px-1 rounded","children":"true"}]," if authentication succeeded and a session was established,"," ",["$","code",null,{"className":"bg-muted px-1 rounded","children":"false"}]," otherwise. On success, the application creates a session for the agent."]}],["$","$L12",null,{"language":"javascript","code":"// SID token provided to the agent (similar to an API token)\nconst token = 'sk_live_abc123...';\n\nconst success = await SID.auth.authenticate(token);\n\nif (success) {\n  console.log('Session established');\n  // Agent can now perform actions as the authenticated user\n  // The application has created a session internally\n} else {\n  console.log('Authentication failed - invalid or expired token');\n}"}]]}]
+6:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Checking for Auth Support"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":["Since ",["$","code",null,{"className":"bg-muted px-1 rounded","children":"auth"}]," is optional, agents should check for its presence before attempting to authenticate:"]}],["$","$L12",null,{"language":"javascript","code":"// Check if the application supports SID authentication\nif (SID.auth) {\n  // Read how auth works for this application\n  console.log('Auth info:', SID.auth.description);\n  \n  // Attempt authentication with the provided SID token\n  const success = await SID.auth.authenticate(token);\n  \n  if (success) {\n    // Session established - proceed with authenticated actions\n    console.log('Session established');\n  }\n} else {\n  // Application doesn't require authentication\n  // or uses a different auth mechanism\n  console.log('No SID auth available');\n}"}]]}]
+7:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"SID Tokens"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"SID tokens are similar to API tokens—they allow agents to authenticate programmatically. The agent should be provided a SID token before attempting to interact with authenticated applications."}],["$","p",null,{"className":"text-base leading-7 mb-4","children":["How tokens are generated and managed is up to the application. Common patterns include API key pages in user settings, developer portals, or integration dashboards. The"," ",["$","code",null,{"className":"bg-muted px-1 rounded","children":"auth.description"}]," ","field provides guidance on what kind of token is expected:"]}],["$","$L12",null,{"language":"javascript","code":"// Example auth descriptions from different applications\n\n// E-commerce platform\n\"Supports token-based auth for agents. Provide a SID token to authenticate. \n Tokens can be scoped to read-only or full access.\"\n\n// Project management tool\n\"Token-based authentication. Provide your SID token to establish a session. \n Tokens inherit your workspace permissions.\"\n\n// Analytics dashboard\n\"Authenticate with a SID token. Tokens require the Developer role.\""}]]}]
+8:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Token Permissions"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":["A key principle of SID authentication:"," ",["$","strong",null,{"children":"tokens inherit the permissions of the user who created them"}],". This means:"]}],["$","ul",null,{"className":"list-disc list-inside space-y-2 text-base leading-7 ml-4 mb-6","children":[["$","li",null,{"children":"If a user can view but not edit a resource, their token can only view it"}],["$","li",null,{"children":"Admin users' tokens have admin-level access"}],["$","li",null,{"children":"When a user's permissions change, their tokens' permissions change too"}],["$","li",null,{"children":"Revoking a user's access should invalidate their tokens"}]]}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Applications may also support scoped tokens with reduced permissions:"}],["$","$L12",null,{"language":"javascript","code":"// Example: Application with scoped tokens\n// auth.description might say:\n\"Tokens can be created with specific scopes:\n - read: View data only\n - write: Create and modify data\n - admin: Full access including user management\n \n Select scopes when creating a token in Settings > API Keys.\""}]]}]
+9:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Security Considerations"}],["$","h3",null,{"className":"text-xl font-medium mt-6 mb-4","children":"For Agent Developers"}],["$","ul",null,{"className":"list-disc list-inside space-y-2 text-base leading-7 ml-4 mb-6","children":[["$","li",null,{"children":[["$","strong",null,{"children":"Never log tokens:"}]," Treat tokens like passwords—don't write them to logs, console output, or error messages"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Secure storage:"}]," Store tokens in secure credential stores, not in plain text files or environment variables in shared environments"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Minimal scope:"}]," Request tokens with the minimum permissions needed for the task"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Token rotation:"}]," Support token rotation and handle expired tokens gracefully"]}],["$","li",null,{"children":[["$","strong",null,{"children":"User consent:"}]," Always get explicit user consent before using their tokens"]}]]}],["$","h3",null,{"className":"text-xl font-medium mt-6 mb-4","children":"For Application Developers"}],["$","ul",null,{"className":"list-disc list-inside space-y-2 text-base leading-7 ml-4 mb-6","children":[["$","li",null,{"children":[["$","strong",null,{"children":"Token generation:"}]," Use cryptographically secure random generation for tokens"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Token storage:"}]," Store only hashed tokens in your database—never plaintext"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Rate limiting:"}]," Apply rate limits to prevent abuse via automated access"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Audit logging:"}]," Log all actions performed via tokens for security auditing"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Expiration:"}]," Consider automatic token expiration (e.g., 90 days) with renewal options"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Revocation:"}]," Provide easy token revocation and immediately invalidate revoked tokens"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Scope support:"}]," Consider supporting scoped tokens for principle of least privilege"]}]]}]]}]
+13:T4fa,// Example: Express.js token validation endpoint
+app.post('/api/auth/sid-token', async (req, res) => {
+  const { token } = req.body;
+  
+  if (!token) {
+    return res.status(400).json({ error: 'Token required' });
+  }
+  
+  try {
+    // Hash the token and look it up
+    const hashedToken = hashToken(token);
+    const tokenRecord = await db.tokens.findOne({ 
+      hashedToken,
+      revokedAt: null,
+      expiresAt: { $gt: new Date() }
+    });
+    
+    if (!tokenRecord) {
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
+    
+    // Log the authentication for auditing
+    await db.auditLog.insert({
+      type: 'sid_token_auth',
+      tokenId: tokenRecord.id,
+      userId: tokenRecord.userId,
+      timestamp: new Date(),
+      ip: req.ip
+    });
+    
+    // Create session (set cookies, JWT, etc.)
+    const sessionToken = await createUserSession(tokenRecord.userId);
+    res.cookie('session', sessionToken, { httpOnly: true, secure: true });
+    
+    // Return success with user info
+    res.json({ 
+      success: true,
+      userId: tokenRecord.userId,
+      scopes: tokenRecord.scopes
+    });
+    
+  } catch (error) {
+    console.error('Token validation error:', error);
+    res.status(500).json({ error: 'Internal error' });
+  }
+});a:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Implementation Guidance"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Here's how to implement SID authentication in your application:"}],["$","h3",null,{"className":"text-xl font-medium mt-6 mb-4","children":"1. Define the Auth Object"}],["$","$L12",null,{"language":"javascript","code":"// In your SID initialization\nwindow.SID = {\n  version: \"1.0.0\",\n  // ... other SID methods ...\n  \n  auth: {\n    description: `Supports token-based auth for agents. \n      Call SID.auth.authenticate(token) with a SID token.\n      Tokens have the same permissions as the user who created them.`,\n    \n    authenticate: async (token) => {\n      // Validate token with your backend\n      try {\n        const response = await fetch('/api/auth/sid-token', {\n          method: 'POST',\n          headers: { 'Content-Type': 'application/json' },\n          body: JSON.stringify({ token })\n        });\n        \n        if (response.ok) {\n          const data = await response.json();\n          // Create a session for the authenticated user\n          // This could set cookies, update app state, etc.\n          await createSession(data.userId, data.scopes);\n          return true;\n        }\n        return false;\n      } catch (error) {\n        console.error('Auth error:', error);\n        return false;\n      }\n    }\n  }\n};"}],["$","h3",null,{"className":"text-xl font-medium mt-6 mb-4","children":"2. Backend Token Validation"}],["$","$L12",null,{"language":"javascript","code":"$13"}],["$","h3",null,{"className":"text-xl font-medium mt-6 mb-4","children":"3. Include Auth Info in Page Context"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Include authentication information in your SID page context so agents know auth is available:"}],["$","$L12",null,{"language":"html","code":"<script type=\"application/sid+json\">\n{\n  \"version\": \"1.0.0\",\n  \n  \"app\": \"Acme Project Manager - A project management tool for teams.\",\n  \n  \"page\": \"Dashboard showing your projects and recent activity.\",\n  \n  \"auth\": \"Supports token-based auth for agents. Call SID.auth.authenticate(token) \n          with a SID token. Tokens have same permissions as the user who created them.\"\n}\n</script>"}]]}]
+14:T57c,// Agent authentication flow
+
+async function authenticateAndPerformTask(token, taskDescription) {
+  // 1. Check if SID is supported
+  if (!window.SID?.isSupported()) {
+    throw new Error('SID not supported on this page');
+  }
+  
+  // 2. Check if auth is available
+  if (!SID.auth) {
+    console.log('No authentication required for this application');
+    // Proceed without auth
+    return performTask(taskDescription);
+  }
+  
+  // 3. Read auth description to understand requirements
+  console.log('Auth info:', SID.auth.description);
+  
+  // 4. Authenticate with provided SID token
+  console.log('Authenticating...');
+  const success = await SID.auth.authenticate(token);
+  
+  if (!success) {
+    throw new Error('Authentication failed - check token validity');
+  }
+  
+  console.log('Session established');
+  
+  // 5. Perform the task as authenticated user
+  return performTask(taskDescription);
+}
+
+async function performTask(taskDescription) {
+  // Get available elements
+  const elements = SID.getElements();
+  
+  // Find relevant element based on task
+  // ... agent logic to determine which element to interact with ...
+  
+  // Perform interaction
+  const result = await SID.interact(elementId, { type: 'click' });
+  
+  // Handle result
+  if (result.success) {
+    console.log('Task completed:', result.message);
+  } else {
+    console.error('Task failed:', result.error);
+  }
+  
+  return result;
+}b:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Complete Agent Authentication Flow"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Here's a complete example of how an agent authenticates and performs actions:"}],["$","$L12",null,{"language":"javascript","code":"$14"}]]}]
+15:T447,async function safeAuthenticate(token) {
+  try {
+    // Check auth availability
+    if (!SID.auth) {
+      return { success: true, message: 'No auth required' };
+    }
+    
+    // Attempt authentication
+    const success = await SID.auth.authenticate(token);
+    
+    if (success) {
+      return { success: true, message: 'Authenticated' };
+    } else {
+      return { 
+        success: false, 
+        error: 'invalid_token',
+        message: 'Token is invalid or expired. Please generate a new token.'
+      };
+    }
+    
+  } catch (error) {
+    // Network or server error
+    return {
+      success: false,
+      error: 'auth_error',
+      message: `Authentication error: ${error.message}`
+    };
+  }
+}
+
+// Usage
+const authResult = await safeAuthenticate(userToken);
+
+if (!authResult.success) {
+  switch (authResult.error) {
+    case 'invalid_token':
+      // Prompt user to provide a new token
+      console.log('Please provide a valid API token');
+      break;
+    case 'auth_error':
+      // Retry or report error
+      console.log('Authentication service unavailable');
+      break;
+  }
+}c:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Error Handling"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Agents should handle common authentication errors gracefully:"}],["$","$L12",null,{"language":"javascript","code":"$15"}]]}]
+d:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Next Steps"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Now that you understand SID authentication, continue with:"}],["$","ul",null,{"className":"list-disc list-inside space-y-2 text-base leading-7 ml-4","children":["$","li",null,{"children":[["$","strong",null,{"children":"Agent Docs"}]," — Specification documents for AI agents implementing or consuming SID"]}]}],["$","p",null,{"className":"text-base leading-7 mt-6","children":"For a complete reference, download the specification documents from the Agent Docs page."}]]}]
+e:["$","$L16",null,{}]
+f:["$","script","script-0",{"src":"/_next/static/chunks/7408279f585ae723.js","async":true}]
+10:["$","script","script-1",{"src":"/_next/static/chunks/f27acd8022899d7e.js","async":true}]
+11:["$","$L17",null,{"children":["$","$18",null,{"name":"Next.MetadataOutlet","children":"$@19"}]}]
+19:null

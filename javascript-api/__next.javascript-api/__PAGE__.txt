@@ -1,0 +1,113 @@
+1:"$Sreact.fragment"
+2:I[42835,["/_next/static/chunks/7408279f585ae723.js","/_next/static/chunks/f27acd8022899d7e.js"],"DocLayout"]
+3:I[72063,["/_next/static/chunks/7408279f585ae723.js","/_next/static/chunks/f27acd8022899d7e.js"],"CodeBlock"]
+12:I[42516,["/_next/static/chunks/7408279f585ae723.js","/_next/static/chunks/f27acd8022899d7e.js"],"TypeDefinition"]
+18:I[22995,["/_next/static/chunks/7408279f585ae723.js","/_next/static/chunks/f27acd8022899d7e.js"],"PageNavigation"]
+19:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+1a:"$Sreact.suspense"
+0:{"buildId":"4wSIn0LPrOuQTL_f-oJ9L","rsc":["$","$1","c",{"children":[["$","$L2",null,{"children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-3xl font-bold tracking-tight sm:text-4xl","children":"JavaScript API"}],["$","p",null,{"className":"mt-4 text-lg text-muted-foreground","children":"Complete reference for the SID JavaScript API, including the global object, all methods, TypeScript interfaces, and usage examples."}]]}],["$","div",null,{"className":"space-y-12","children":[["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"The window.SID Global Object"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":["SID exposes its functionality through a global"," ",["$","code",null,{"className":"bg-muted px-1 rounded","children":"window.SID"}]," object. This object provides methods for discovering elements, understanding application context, triggering interactions, and tracking operations."]}],["$","$L3",null,{"language":"typescript","code":"window.SID = {\n  version: \"1.0.0\",\n  \n  // Discovery\n  isSupported(): boolean,\n  getPageContext(): string,\n  getAppContext(): string,\n  \n  // Elements\n  getElements(): SIDElement[],\n  getElement(id: string): SIDElement | null,\n  \n  // Execution (waits for completion)\n  interact(id: string, action: InteractionAction, options?: { timeout?: number }): Promise<InteractionResult>,\n  \n  // Completion signaling (called by app code)\n  complete(elementId: string, result: CompletionResult): void,\n  \n  // Auth (optional)\n  auth?: {\n    description: string,\n    authenticate(token: string): Promise<boolean>\n  }\n}"}]]}],["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Methods Reference"}],["$","h3",null,{"className":"text-xl font-medium mt-8 mb-4","children":"Discovery Methods"}],["$","div",null,{"className":"space-y-6","children":[["$","div",null,{"className":"border rounded-lg p-4","children":[["$","h4",null,{"className":"font-mono font-semibold mb-2","children":"isSupported(): boolean"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":"Checks if SID is available and properly initialized on the current page. Always call this before using other SID methods."}],["$","$L3",null,{"language":"javascript","code":"// Check if SID is available\nif (window.SID?.isSupported()) {\n  console.log('SID is available on this page');\n} else {\n  console.log('SID is not supported');\n}"}]]}],["$","div",null,{"className":"border rounded-lg p-4","children":[["$","h4",null,{"className":"font-mono font-semibold mb-2","children":"getPageContext(): string"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":"Returns a plaintext description of the current page, including what the page is for and what actions are available."}],["$","$L3",null,{"language":"javascript","code":"const pageContext = window.SID.getPageContext();\nconsole.log(pageContext);\n// \"Project Dashboard for 'My Project'. Shows project overview, \n//  recent activity, and quick actions. From here you can access \n//  task list, team members, settings, and reports.\""}]]}],["$","div",null,{"className":"border rounded-lg p-4","children":[["$","h4",null,{"className":"font-mono font-semibold mb-2","children":"getAppContext(): string"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":"Returns a plaintext description of the entire application, including its purpose and main features."}],["$","$L3",null,{"language":"javascript","code":"const appContext = window.SID.getAppContext();\nconsole.log(appContext);\n// \"Acme Project Manager - A project management tool for teams. \n//  Main features: create and manage projects, assign tasks, \n//  track time, generate reports, team collaboration.\""}]]}]]}],"$L4","$L5","$L6","$L7","$L8","$L9"]}],"$La","$Lb","$Lc","$Ld"]}],"$Le"]}],["$Lf","$L10"],"$L11"]}],"loading":null,"isPartial":false}
+4:["$","h3",null,{"className":"text-xl font-medium mt-8 mb-4","children":"Element Methods"}]
+5:["$","div",null,{"className":"space-y-6","children":[["$","div",null,{"className":"border rounded-lg p-4","children":[["$","h4",null,{"className":"font-mono font-semibold mb-2","children":"getElements(): SIDElement[]"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":"Returns all SID-annotated elements on the page with their short descriptions. Use this for an efficient overview of available interactions."}],["$","$L3",null,{"language":"javascript","code":"const elements = window.SID.getElements();\n\nfor (const el of elements) {\n  console.log(`[${el.id}] ${el.description}`);\n  console.log(`  Actions: ${el.actions.map(a => a.type).join(', ')}`);\n  console.log(`  Visible: ${el.state?.visible}, Enabled: ${el.state?.enabled}`);\n}\n\n// Output:\n// [btn-save] Saves the current document\n//   Actions: click\n//   Visible: true, Enabled: true\n// [input-title] Document title\n//   Actions: fill\n//   Visible: true, Enabled: true"}]]}],["$","div",null,{"className":"border rounded-lg p-4","children":[["$","h4",null,{"className":"font-mono font-semibold mb-2","children":"getElement(id: string): SIDElement | null"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":"Returns a single element by ID with its full long description populated. Returns null if the element is not found."}],["$","$L3",null,{"language":"javascript","code":"const saveBtn = window.SID.getElement('btn-save');\n\nif (saveBtn) {\n  console.log('Short:', saveBtn.description);\n  // \"Saves the current document\"\n  \n  console.log('Long:', saveBtn.descriptionLong);\n  // \"Saves the current document to the server. Validates all \n  //  required fields before saving. Shows inline validation \n  //  errors if any fields are invalid. On success, displays \n  //  a toast notification and updates the 'Last saved' timestamp.\"\n  \n  // Check if element is disabled\n  if (saveBtn.disabled) {\n    console.log('Disabled:', saveBtn.disabledDescription);\n    // \"You need Editor role to save documents.\"\n  }\n}"}]]}]]}]
+6:["$","h3",null,{"className":"text-xl font-medium mt-8 mb-4","children":"Execution Methods"}]
+7:["$","div",null,{"className":"space-y-6","children":[["$","div",null,{"className":"border rounded-lg p-4","children":[["$","h4",null,{"className":"font-mono font-semibold mb-2","children":"interact(id: string, action: InteractionAction, options?: { timeout?: number }): Promise<InteractionResult>"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":"Triggers an interaction on the specified element and waits for completion. Returns a result indicating success/failure, final status, and any side effects."}],["$","$L3",null,{"language":"javascript","code":"// Click a button and wait for completion\nconst result = await window.SID.interact('btn-save', { type: 'click' }, { timeout: 15000 });\n\nif (result.status === 'completed') {\n  console.log('Success:', result.message);\n  if (result.effects?.elementsAdded) {\n    console.log('New elements:', result.effects.elementsAdded);\n  }\n} else {\n  console.error('Interaction failed or timed out:', result.error || result.status);\n}\n\n// Fill an input field (typically instant)\nawait window.SID.interact('input-email', { \n  type: 'fill', \n  value: 'user@example.com' \n});\n\n// Select from a dropdown\nawait window.SID.interact('select-plan', { \n  type: 'select', \n  value: 'pro' \n});\n\n// Check a checkbox\nawait window.SID.interact('checkbox-terms', { \n  type: 'check', \n  value: true \n});"}]]}],["$","div",null,{"className":"border rounded-lg p-4","children":[["$","h4",null,{"className":"font-mono font-semibold mb-2","children":"complete(elementId: string, result: CompletionResult): void"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":["Called by the application code to signal that an async operation triggered by an interaction has completed. This resolves the pending ",["$","code",null,{"className":"bg-muted px-1 rounded","children":"interact()"}]," Promise."]}],["$","$L3",null,{"language":"javascript","code":"// In application event handler\nasync function handleSave() {\n  try {\n    await api.saveData();\n    window.SID.complete('btn-save', {\n      status: 'completed',\n      message: 'Data saved successfully'\n    });\n  } catch (err) {\n    window.SID.complete('btn-save', {\n      status: 'error',\n      message: err.message\n    });\n  }\n}"}]]}]]}]
+8:["$","h3",null,{"className":"text-xl font-medium mt-8 mb-4","children":"Authentication Methods"}]
+9:["$","div",null,{"className":"space-y-6","children":["$","div",null,{"className":"border rounded-lg p-4","children":[["$","h4",null,{"className":"font-mono font-semibold mb-2","children":"auth.authenticate(token: string): Promise<boolean>"}],["$","p",null,{"className":"text-muted-foreground text-sm mb-4","children":"Authenticates the agent with the provided SID token. Returns true if authentication succeeded and a session was established."}],["$","$L3",null,{"language":"javascript","code":"// Check how auth works\nconsole.log(window.SID.auth?.description);\n// \"Supports token-based auth. Provide a SID token to authenticate.\"\n\n// Authenticate with a SID token (provided to the agent)\nconst success = await window.SID.auth?.authenticate('sk-abc123');\n\nif (success) {\n  console.log('Session established');\n  // Agent can now perform actions as the authenticated user\n} else {\n  console.error('Authentication failed');\n}"}]]}]}]
+a:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"TypeScript Interfaces"}],["$","p",null,{"className":"text-base leading-7 mb-6","children":"SID provides TypeScript interfaces for type-safe development. These interfaces define the structure of elements, actions, results, and operations."}],["$","div",null,{"className":"space-y-6","children":[["$","$L12",null,{"name":"SIDElement","description":"Represents an element annotated with SID metadata. Contains identification, descriptions, available actions, and current state.","code":"interface SIDElement {\n  id: string;\n  selector: string;\n  \n  // Short description - returned by getElements()\n  description: string;\n  \n  // Long description - only populated when calling getElement(id)\n  // Contains detailed information about outcomes, forms revealed, etc.\n  descriptionLong?: string;\n  \n  // What actions can be performed\n  actions: ActionDefinition[];\n  \n  // Current state (only what's needed for interaction)\n  state?: {\n    visible: boolean;\n    enabled: boolean;\n    value?: string;\n  };\n  \n  // Disabled state - indicates the element exists but cannot be interacted with\n  // Always returned by both getElements() and getElement()\n  disabled: boolean;\n  \n  // Plaintext explanation of why the element is disabled\n  // Only present when disabled is true\n  disabledDescription?: string;\n  \n  // Human input requirements (if present, agent must collect data from user)\n  humanInput?: HumanInputRequirement;\n}"}],["$","$L12",null,{"name":"ActionDefinition","description":"Defines an action that can be performed on an element, including its type, input requirements, and whether it produces a trackable operation.","code":"interface ActionDefinition {\n  type: \"click\" | \"fill\" | \"select\" | \"check\" | \"hover\" | \"upload\";\n  \n  // For fill/select actions\n  input?: {\n    dataType: \"text\" | \"number\" | \"date\" | \"email\" | \"password\" | \"file\";\n    required: boolean;\n    options?: string[];    // For select/radio only\n  };\n  \n  // Whether this action produces a trackable operation\n  // false for hover, focus, and other instant/guaranteed actions\n  tracked: boolean;\n  \n  // Everything else is plaintext\n  description: string;     // What this action does, outcomes, side effects\n}"}],["$","$L12",null,{"name":"InteractionAction","description":"The action to perform when calling interact(). Specifies the action type and optional value for fill/select/check actions.","code":"interface InteractionAction {\n  type: string;\n  value?: string | number | boolean | File;\n}"}],["$","$L12",null,{"name":"InteractionResult","description":"The result of calling interact(). Indicates whether the interaction was triggered and provides the final status and effects.","code":"interface InteractionResult {\n  success: boolean;              // Whether the interaction was triggered\n  status: \"completed\" | \"error\" | \"timeout\" | \"navigation\" | \"external\";\n  error?: string;                // Error if interaction couldn't be triggered\n  message?: string;              // Plaintext description of what happened\n  effects?: OperationEffects;    // What changed (for 'completed' status)\n}"}],["$","$L12",null,{"name":"CompletionResult","description":"The result passed to complete() by the application code to signal operation completion.","code":"interface CompletionResult {\n  status: \"completed\" | \"error\";\n  message?: string;\n  effects?: OperationEffects;\n}"}],"$L13","$L14","$L15"]}]]}]
+16:T560,// 1. Get element with full description
+const saveBtn = window.SID.getElement('btn-save');
+console.log(saveBtn.descriptionLong);
+// "Saves the current document to the server. Shows inline validation 
+//  errors if any fields are invalid. On success, shows a toast and 
+//  updates the 'Last saved' timestamp. On network error, shows retry option."
+
+// 2. Trigger interaction and wait for completion
+const result = await window.SID.interact('btn-save', { type: 'click' }, { timeout: 15000 });
+
+if (!result.success) {
+  // Interaction couldn't be triggered (element disabled, not found, etc.)
+  console.error(result.error);
+  return;
+}
+
+// 3. Handle based on final status
+switch (result.status) {
+  case 'completed':
+    console.log('Saved:', result.message);
+    // Check what changed
+    if (result.effects?.elementsAdded) {
+      console.log('New elements:', result.effects.elementsAdded);
+    }
+    break;
+    
+  case 'error':
+    console.error('Save failed:', result.message);
+    break;
+    
+  case 'timeout':
+    console.log('Operation timed out - may still complete in background');
+    break;
+    
+  case 'navigation':
+    // Page will navigate; wait for page load
+    // Agent should wait for page load, then re-query SID on new page
+    break;
+    
+  case 'external':
+    // Leaving SID context; read message for guidance
+    console.log(result.message);
+    break;
+}b:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Complete Interaction Flow"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Here's a complete example showing how an agent would discover elements, trigger an interaction, and track the resulting operation:"}],["$","$L3",null,{"language":"javascript","code":"$16"}]]}]
+17:T50c,// Get all form elements
+const elements = window.SID.getElements();
+
+// Find and fill the email field
+const emailField = elements.find(el => el.id === 'input-email');
+if (emailField) {
+  await window.SID.interact('input-email', { 
+    type: 'fill', 
+    value: 'user@example.com' 
+  });
+}
+
+// Find and select a plan
+const planSelect = elements.find(el => el.id === 'select-plan');
+if (planSelect) {
+  // Check available options from the action definition
+  const selectAction = planSelect.actions.find(a => a.type === 'select');
+  console.log('Available plans:', selectAction?.input?.options);
+  // ['free', 'pro', 'enterprise']
+  
+  await window.SID.interact('select-plan', { 
+    type: 'select', 
+    value: 'pro' 
+  });
+}
+
+// Check the terms checkbox
+await window.SID.interact('checkbox-terms', { 
+  type: 'check', 
+  value: true 
+});
+
+// Submit the form and wait for completion
+const result = await window.SID.interact('btn-submit', { type: 'click' }, { timeout: 10000 });
+
+if (result.status === 'completed') {
+  console.log('Form submitted successfully');
+  
+  // Check if we navigated somewhere
+  if (result.effects?.navigatedTo) {
+    console.log('Redirected to:', result.effects.navigatedTo);
+  }
+} else {
+  console.error('Form submission failed:', result.message || result.status);
+}c:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Form Filling Example"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Here's how an agent would fill out a form using SID:"}],["$","$L3",null,{"language":"javascript","code":"$17"}]]}]
+d:["$","section",null,{"children":[["$","h2",null,{"className":"text-2xl font-semibold tracking-tight mb-4","children":"Next Steps"}],["$","p",null,{"className":"text-base leading-7 mb-4","children":"Now that you understand the JavaScript API, continue with:"}],["$","ul",null,{"className":"list-disc list-inside space-y-2 text-base leading-7 ml-4","children":[["$","li",null,{"children":[["$","strong",null,{"children":"HTML Attributes"}]," — How to add SID metadata to your HTML elements"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Operation Tracking"}]," — Deep dive into tracking types and completion semantics"]}],["$","li",null,{"children":[["$","strong",null,{"children":"Human Input"}]," — Declaring when sensitive data collection is needed"]}]]}]]}]
+e:["$","$L18",null,{}]
+f:["$","script","script-0",{"src":"/_next/static/chunks/7408279f585ae723.js","async":true}]
+10:["$","script","script-1",{"src":"/_next/static/chunks/f27acd8022899d7e.js","async":true}]
+11:["$","$L19",null,{"children":["$","$1a",null,{"name":"Next.MetadataOutlet","children":"$@1b"}]}]
+13:["$","$L12",null,{"name":"OperationTracking","description":"Specifies how an operation's completion should be tracked. Different tracking types have different completion semantics.","code":"type OperationTracking = \n  | { type: \"async\" }                              // interact() waits for SID.complete()\n  | { type: \"navigation\"; destination?: string }  // Page navigation = success\n  | { type: \"external\"; description: string }     // Leaves SID context\n  | { type: \"none\" }                              // No tracking needed (instant actions)"}]
+14:["$","$L12",null,{"name":"Operation","description":"Represents the full state of an operation, including its status, timing, and effects.","code":"interface Operation {\n  id: string;\n  elementId: string;              // SID element that triggered this\n  actionType: string;             // The action that was performed\n  status: \"pending\" | \"success\" | \"error\";\n  message?: string;               // Plaintext: what happened or error details\n  startedAt: number;              // Timestamp\n  completedAt?: number;           // Timestamp when status changed from pending\n  \n  // What changed as a result (populated on completion)\n  effects?: OperationEffects;\n}"}]
+15:["$","$L12",null,{"name":"OperationEffects","description":"Describes what changed as a result of an operation completing. Includes navigation, element changes, and state changes.","code":"interface OperationEffects {\n  // Client-side navigation occurred\n  navigatedTo?: string;\n  \n  // New SID elements now available (e.g., modal opened)\n  elementsAdded?: string[];\n  \n  // SID elements no longer available (e.g., modal closed)\n  elementsRemoved?: string[];\n  \n  // Plaintext description of data/state changes\n  changes?: string;\n}"}]
+1b:null
